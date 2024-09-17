@@ -18,3 +18,8 @@ A Alu recebe 3 parâmetros A, B e Op, onde A e B são os valores que serão oper
 ## Vídeo
 
 [Link do vídeo](https://youtu.be/vuOrVeMqA6o)
+
+
+## Desafio Extra\
+
+No arquivo FDX.dig foi feito uma implementação parcial do ciclo fdx, ataualmente o sistema é capaz de guardar a próxima instrução no registrador de instrução, é capaz de separar a operação e o endereço do operando, porém ainda não é capaz de realizar a operação. O que falta para o sistema funcionar é transformar o ciclo atual que é de tick de clock em um de 3 ticks, onde no primeiro tick é feita a busca da instrução, no segundo é feita a decodificação e no terceiro é feita a execução.
