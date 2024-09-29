@@ -1,0 +1,1 @@
+/home/albertomiranda/Documents/github/PonderadasMod11/neural_nertwork_implementation/target/debug/neural_nertwork_implementation: /home/albertomiranda/Documents/github/PonderadasMod11/neural_nertwork_implementation/src/main.rs
