@@ -196,3 +196,95 @@ fn test_tensor_flattern() {
 
     assert_eq!(new_tensor, result);
 }
+
+#[test]
+fn test_tensor_add() {
+    let tensor = Tensor::new(
+        3,
+        3,
+        vec![
+            vec![20.0, 24.0, 11.0],
+            vec![19.0, 17.0, 20.0],
+            vec![21.0, 40.0, 25.0],
+        ],
+    );
+
+    let tensor2 = Tensor::new(
+        3,
+        3,
+        vec![
+            vec![21.0, 40.0, 25.0],
+            vec![20.0, 24.0, 11.0],
+            vec![19.0, 17.0, 20.0],
+        ],
+    );
+
+    let result = Tensor::new(
+        3,
+        3,
+        vec![
+            vec![41.0, 64.0, 36.0],
+            vec![39.0, 41.0, 31.0],
+            vec![40.0, 57.0, 45.0],
+        ],
+    );
+
+    let new_tensor = tensor +tensor2;
+
+    println!("Results for test_tensor_flattern:");
+    for i in 0..(new_tensor.data.len()) {
+        println!("{:?}", new_tensor.data[i]);
+    }
+    println!("\n");
+
+    
+    for i in 0..(new_tensor.data.len()) {
+        assert_eq!(new_tensor.data[i], result.data[i]);
+    }
+}
+
+#[test]
+fn test_tensor_multiply() {
+    let tensor = Tensor::new(
+        3,
+        3,
+        vec![
+            vec![20.0, 24.0, 11.0],
+            vec![19.0, 17.0, 20.0],
+            vec![21.0, 40.0, 25.0],
+        ],
+    );
+
+    let tensor2 = Tensor::new(
+        3,
+        3,
+        vec![
+            vec![21.0, 40.0, 25.0],
+            vec![20.0, 24.0, 11.0],
+            vec![19.0, 17.0, 20.0],
+        ],
+    );
+
+    let result = Tensor::new(
+        3,
+        3,
+        vec![
+            vec![420.0, 960.0, 275.0],
+            vec![380.0, 408.0, 220.0],
+            vec![399.0,680.0,500.0],
+        ],
+    );
+
+    let new_tensor = tensor*tensor2;
+
+    println!("Results for test_tensor_flattern:");
+    for i in 0..(new_tensor.data.len()) {
+        println!("{:?}", new_tensor.data[i]);
+    }
+    println!("\n");
+
+    
+    for i in 0..(new_tensor.data.len()) {
+        assert_eq!(new_tensor.data[i], result.data[i]);
+    }
+}

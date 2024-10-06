@@ -1,5 +1,6 @@
 use std::f32::INFINITY;
-
+use std::ops::Mul;
+use std::ops::Add;
 pub struct Tensor {
     pub data: Vec<Vec<f32>>,
     cols: usize,
@@ -127,3 +128,41 @@ impl Tensor
     }
 }
 
+impl Mul<Tensor> for Tensor {
+    type Output = Tensor;
+    
+    fn mul(self, other: Tensor) -> Tensor {
+        let mut new_data : Vec<Vec<f32>> = vec![vec![0.0;self.cols];self.rows];
+        for i in 0..self.rows {
+            for j in 0..self.cols {
+                new_data[i][j] = self.data[i][j]*other.data[i][j];
+            }
+        }    
+        Tensor::new(self.rows,self.cols,new_data)
+    }
+}
+
+impl Add for Tensor {
+    type Output = Tensor;
+
+    fn add(self, other: Tensor) -> Tensor {
+        let mut new_data : Vec<Vec<f32>> = vec![vec![0.0;self.cols];self.rows];
+        for i in 0..self.rows {
+            for j in 0..self.cols {
+                new_data[i][j] = self.data[i][j] + other.data[i][j];
+            }
+        }    
+        Tensor::new(self.rows,self.cols,new_data)
+    }
+}
+
+impl PartialEq for Tensor {
+    fn eq(&self, other: &Tensor) -> bool {
+        for i in 0..self.rows {
+            for j in 0..self.cols {
+                if self.data[i][j] == other.data[i][j] {return false;}
+            }
+        }    
+        return true
+    }
+}
