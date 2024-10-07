@@ -1,17 +1,26 @@
 use std::f32::INFINITY;
 use std::ops::Mul;
 use std::ops::Add;
+
+#[derive(Clone)]
 pub struct Tensor {
     pub data: Vec<Vec<f32>>,
-    cols: usize,
-    rows: usize,
+    pub cols: usize,
+    pub rows: usize,
 }
 
 impl Tensor 
 {
     pub fn new(rows: usize, cols: usize,data :Vec<Vec<f32>>) -> Tensor {
-        if (data.len() != rows ) || (data[0].len() != cols) {
-            panic!("invalid data shape");
+        if !data.is_empty() {
+            if (data.len() != rows ) || (data[0].len() != cols) {
+                panic!("invalid data shape");
+            }
+        }
+        else {
+            if rows !=0 || cols !=0 {
+                panic!("invalid data shape")
+            }
         }
 
         Tensor {
@@ -128,10 +137,10 @@ impl Tensor
     }
 }
 
-impl Mul<Tensor> for Tensor {
+impl Mul<&Tensor> for &Tensor {
     type Output = Tensor;
     
-    fn mul(self, other: Tensor) -> Tensor {
+    fn mul(self, other: &Tensor) -> Tensor {
         let mut new_data : Vec<Vec<f32>> = vec![vec![0.0;self.cols];self.rows];
         for i in 0..self.rows {
             for j in 0..self.cols {
@@ -142,10 +151,10 @@ impl Mul<Tensor> for Tensor {
     }
 }
 
-impl Add for Tensor {
+impl Add<&Tensor> for &Tensor {
     type Output = Tensor;
 
-    fn add(self, other: Tensor) -> Tensor {
+    fn add(self, other: &Tensor) -> Tensor {
         let mut new_data : Vec<Vec<f32>> = vec![vec![0.0;self.cols];self.rows];
         for i in 0..self.rows {
             for j in 0..self.cols {

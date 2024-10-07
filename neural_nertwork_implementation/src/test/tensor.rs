@@ -229,9 +229,9 @@ fn test_tensor_add() {
         ],
     );
 
-    let new_tensor = tensor +tensor2;
+    let new_tensor = &tensor + &tensor2;
 
-    println!("Results for test_tensor_flattern:");
+    println!("Results for test_tensor_add:");
     for i in 0..(new_tensor.data.len()) {
         println!("{:?}", new_tensor.data[i]);
     }
@@ -275,9 +275,9 @@ fn test_tensor_multiply() {
         ],
     );
 
-    let new_tensor = tensor*tensor2;
+    let new_tensor = &tensor*&tensor2;
 
-    println!("Results for test_tensor_flattern:");
+    println!("Results for test_tensor_multiply:");
     for i in 0..(new_tensor.data.len()) {
         println!("{:?}", new_tensor.data[i]);
     }
@@ -288,3 +288,6 @@ fn test_tensor_multiply() {
         assert_eq!(new_tensor.data[i], result.data[i]);
     }
 }
+
+// #[test]
+// fn 

@@ -1,3 +1,3 @@
-mod layer;
+pub mod layer;
 
-pub use layer::Layer;
+pub mod poolingLayers;
